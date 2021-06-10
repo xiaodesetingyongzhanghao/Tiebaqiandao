@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: tieba
 spec:
-  schedule: "0 */8 * * *"
+  schedule: "*/5 * * * *"
   jobTemplate:
     spec:
       template:
@@ -15,4 +15,8 @@ spec:
             env:
             - name: BDUSS
               value: "replace here"
+            command:
+              - /bin/sh
+              - -c
+              - cd /app; python main.py
           restartPolicy: OnFailure
